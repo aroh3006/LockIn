@@ -16,21 +16,21 @@ Lock In was built around one idea: preparation only works if you can see, at a g
 
 The dashboard is organized into tabs, each covering one part of preparation:
 
-- **Today** — the day's suggested focus, a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, and same-day alerts for any scheduled OA, interview, or pre-placement talk.
-- **Log / Archive** — a calendar you can click into for any date, with a free-text field for what you actually worked on that day.
-- **DSA** — a pattern-tagged problem tracker with a Day 3 / Day 10 / Day 30 spaced-revisit schedule, status color-coding, full solve-history per problem, and search/filter by pattern, tier, or status.
-- **TryHackMe** — the same tracking model applied to hands-on rooms and paths, organized by category.
+- **Today** - the day's suggested focus, a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, and same-day alerts for any scheduled OA, interview, or pre-placement talk.
+- **Log / Archive** - a calendar you can click into for any date, with a free-text field for what you actually worked on that day.
+- **DSA** - a pattern-tagged problem tracker with a Day 3 / Day 10 / Day 30 spaced-revisit schedule, status color-coding, full solve-history per problem, and search/filter by pattern, tier, or status.
+- **TryHackMe** - the same tracking model applied to hands-on rooms and paths, organized by category.
 - **Cybersecurity** — a rotation tracker across security topic areas, with a staleness indicator and an honest "interview-ready" flag.
-- **Core CS** — revision tracking for DBMS, OOP, Computer Networks, and Operating Systems.
-- **Placements** — a company pipeline with editable stage tracking, and date/time fields for OA, Interview, and PPT that trigger same-day alerts on the Today tab.
-- **Weekly Review** — rolling 7-day stats across every tracker, plus a running log of weekly reflection notes.
+- **Core CS** - revision tracking for DBMS, OOP, Computer Networks, and Operating Systems.
+- **Placements** - a company pipeline with editable stage tracking, and date/time fields for OA, Interview, and PPT that trigger same-day alerts on the Today tab.
+- **Weekly Review** - rolling 7-day stats across every tracker, plus a running log of weekly reflection notes.
 
 ## Profile and Track Selection
 
 Not every user of this dashboard is preparing for a cybersecurity role. On first load, the app asks for a name and whether the user is on a cybersecurity track.
 
 - If **yes**, the TryHackMe and Cybersecurity tabs are shown, along with the cybersecurity topic in the Today rotation panel and the cybersecurity item in the daily checklist.
-- If **no**, those elements are hidden entirely. DSA, Core CS, Placements, Log/Archive, and Weekly Review remain available regardless — none of that is cybersecurity-specific.
+- If **no**, those elements are hidden entirely. DSA, Core CS, Placements, Log/Archive and Weekly Review remain available regardless, none of that is cybersecurity-specific.
 
 The track can be changed at any time from the Profile button in the sidebar, without affecting any already-recorded data.
 
@@ -49,7 +49,7 @@ When running as a standalone deployment, storage is scoped to a single browser o
 - Clearing browser data, cookies, or site storage will permanently delete all tracked progress.
 - There is no account system and no server-side backup.
 
-This is an inherent constraint of a dependency-free, backend-free static page, not a bug. Anyone using this deployment for anything beyond casual or short-term use should periodically export their data manually, or fork the project and connect a real backend if persistence across devices matters to them.
+This is an inherent constraint of a dependency-free, backend-free static page, not a bug. Anyone using this deployment for anything beyond casual or short-term use should periodically export their data manually or fork the project and connect a real backend if persistence across devices matters to them.
 
 ## Getting Started
 
@@ -61,14 +61,14 @@ No installation is required.
 
 ## Tech Stack
 
-- HTML, CSS, and vanilla JavaScript — no framework, no build tooling, no package manager.
-- All state, rendering, and event handling are implemented in a single file.
+- HTML, CSS, and vanilla JavaScript. No framework, no build tooling, no package manager.
+- All state, rendering and event handling are implemented in a single file.
 - Fonts are loaded from Google Fonts (Space Grotesk, IBM Plex Mono, IBM Plex Sans); everything else is self-contained.
 
 ## Customization
 
-The seeded DSA problem set, TryHackMe rooms, cybersecurity rotation topics, and core CS subjects reflect one particular preparation plan. They are starting points, not fixed content — items can be added, removed, or edited freely from within the dashboard once it is running, and the seed data itself can be edited directly in the source for a different starting point.
+The seeded DSA problem set, TryHackMe rooms, cybersecurity rotation topics, and core CS subjects reflect one particular preparation plan. They are starting points, not fixed content. Items can be added, removed or edited freely from within the dashboard once it is running and the seed data itself can be edited directly in the source for a different starting point.
 
 ## License
 
-No license has been applied yet. Add one (for example, MIT) if you intend for others to reuse or modify this project.
+Lock In is licensed under the MIT License.
