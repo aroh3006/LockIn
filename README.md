@@ -8,7 +8,7 @@
 
 A single-file, self-contained dashboard for tracking placement season preparation : DSA practice, cybersecurity study rotation, hands-on TryHackMe rooms, core CS revision and the interview pipeline itself. No build step, no backend, no dependencies. Open `index.html` in a browser and it runs.
 
-**Live:** [aroh3006.github.io/LockIn](https://aroh3006.github.io/LockIn)
+**Live:** [aroh3006.github.io/lockin](https://aroh3006.github.io/lockin/)
 
 ---
 
@@ -55,7 +55,7 @@ This is an inherent constraint of a dependency-free, backend-free static page, n
 
 ## Getting Started
 
-Lock In is already deployed at [aroh3006.github.io/LockIn](https://aroh3006.github.io/LockIn) — no installation needed, just open the link.
+Lock In is already deployed at [aroh3006.github.io/lockin](https://aroh3006.github.io/lockin) — no installation needed, just open the link.
 
 To run it locally instead:
 
