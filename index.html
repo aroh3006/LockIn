@@ -196,6 +196,17 @@
   .today-suggestion .v{margin-bottom:14px;}
   .free-block-note{margin-top:6px;padding:10px 12px;background:var(--bg-input);border-left:2px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;font-size:12px;color:var(--text-dim);}
 
+  /* ---------- rotation editor ---------- */
+  #rotation-editor{margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);}
+  .rotation-editor-hint{font-size:11px;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;margin-bottom:12px;}
+  .rotation-day-block{padding:12px 0;border-top:1px solid var(--hairline);}
+  .rotation-day-block:first-of-type{border-top:none;padding-top:0;}
+  .rotation-day-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+  .rotation-day-block label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin:8px 0 4px;}
+  .rotation-day-block input[type=text],.rotation-day-block textarea{width:100%;font-size:12.5px;}
+  .rotation-day-block textarea{min-height:50px;}
+  .rotation-reset-row{display:flex;justify-content:flex-end;margin-bottom:10px;}
+
   .week-entry{padding:14px;background:var(--bg-input);border:1px solid var(--hairline);border-radius:var(--radius);margin-bottom:12px;}
   .week-entry .wk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);}
 
@@ -378,7 +389,10 @@
       <div class="grid2">
         <div class="panel">
           <div class="bc2"></div>
-          <div class="panel-title"><span><span class="dot"></span>Today's rotation</span></div>
+          <div class="panel-title">
+            <span><span class="dot"></span>Today's rotation</span>
+            <button class="btn xs ghost" id="rotation-edit-toggle">Edit</button>
+          </div>
           <div class="today-suggestion">
             <div id="today-cyber-block">
               <span class="k">Cybersecurity topic</span>
@@ -389,6 +403,7 @@
             <span class="k">Schedule note</span>
             <div class="free-block-note" id="today-schedule-note">—</div>
           </div>
+          <div id="rotation-editor" style="display:none;"></div>
         </div>
 
         <div class="panel">
@@ -818,7 +833,10 @@
       placements: [],
       dailyLog: {},
       reviews: [],
-      profile: null
+      profile: null,
+      cyberRotation: {},
+      corecsRotation: {},
+      scheduleNotes: {}
     };
   }
 
@@ -859,6 +877,9 @@
     if(!state.reviews) state.reviews = [];
     if(!state.placements) state.placements = [];
     if(state.profile === undefined) state.profile = null;
+    if(!state.cyberRotation) state.cyberRotation = {};
+    if(!state.corecsRotation) state.corecsRotation = {};
+    if(!state.scheduleNotes) state.scheduleNotes = {};
     if(!state.thm) state.thm = SEED_THM.map(([name,category,diff,tier]) => ({
       id: uid(), name, category, difficulty: diff, tier, status: "not-started", statusDate: null, confidence: 0, history: []
     }));
@@ -1001,6 +1022,11 @@
   });
 
   // ---------------- TODAY ----------------
+  function rotationValue(overrides, defaults, dow){
+    const v = overrides[dow];
+    return (v !== undefined && v !== null && String(v).trim() !== '') ? v : defaults[dow];
+  }
+
   function renderToday(){
     const now = new Date();
     const dow = now.getDay();
@@ -1010,9 +1036,9 @@
     document.getElementById('sb-date').textContent = now.toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long'});
     document.getElementById('today-day-name').textContent = DAY_NAMES[dow];
     document.getElementById('today-cyber-block').style.display = showCyber ? '' : 'none';
-    if(showCyber) document.getElementById('today-cyber-topic').textContent = CYBER_ROTATION[dow];
-    document.getElementById('today-corecs-subject').textContent = CORECS_ROTATION[dow];
-    document.getElementById('today-schedule-note').textContent = SCHEDULE_NOTE[dow];
+    if(showCyber) document.getElementById('today-cyber-topic').textContent = rotationValue(state.cyberRotation, CYBER_ROTATION, dow);
+    document.getElementById('today-corecs-subject').textContent = rotationValue(state.corecsRotation, CORECS_ROTATION, dow);
+    document.getElementById('today-schedule-note').textContent = rotationValue(state.scheduleNotes, SCHEDULE_NOTE, dow);
 
     if(!state.dailyLog[dstr]) state.dailyLog[dstr] = { dayType:"normal", checks:{} };
     const log = state.dailyLog[dstr];
@@ -1040,6 +1066,67 @@
     const doneCount = items.filter(i => log.checks[i.id]).length;
     document.getElementById('mini-tasks').textContent = `${doneCount}/${items.length}`;
   }
+
+  // ---------------- ROTATION EDITOR ----------------
+  function escapeAttr(s){ return String(s).replace(/"/g, '&quot;'); }
+  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function renderRotationEditor(){
+    const container = document.getElementById('rotation-editor');
+    const showCyber = isCyberTrack();
+    const html = DAY_NAMES.map((name, dow) => `
+      <div class="rotation-day-block">
+        <div class="rotation-day-label">${name}</div>
+        ${showCyber ? `
+          <label>Cybersecurity topic</label>
+          <input type="text" class="rot-cyber-input" data-dow="${dow}" value="${escapeAttr(state.cyberRotation[dow] || '')}" placeholder="${escapeAttr(CYBER_ROTATION[dow])}">
+        ` : ''}
+        <label>Core CS subject</label>
+        <input type="text" class="rot-corecs-input" data-dow="${dow}" value="${escapeAttr(state.corecsRotation[dow] || '')}" placeholder="${escapeAttr(CORECS_ROTATION[dow])}">
+        <label>Schedule note</label>
+        <textarea class="rot-schedule-input" data-dow="${dow}" placeholder="${escapeAttr(SCHEDULE_NOTE[dow])}">${escapeHtml(state.scheduleNotes[dow] || '')}</textarea>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="rotation-editor-hint">Leave a field blank to keep the default shown as its placeholder. Changes save automatically and apply immediately.</div>
+      <div class="rotation-reset-row"><button class="btn xs ghost" id="rotation-reset-all">Reset all to defaults</button></div>
+      ${html}
+    `;
+
+    container.querySelectorAll('.rot-cyber-input').forEach(inp => inp.addEventListener('input', (e) => {
+      state.cyberRotation[e.target.dataset.dow] = e.target.value;
+      save(); renderToday();
+    }));
+    container.querySelectorAll('.rot-corecs-input').forEach(inp => inp.addEventListener('input', (e) => {
+      state.corecsRotation[e.target.dataset.dow] = e.target.value;
+      save(); renderToday();
+    }));
+    container.querySelectorAll('.rot-schedule-input').forEach(inp => inp.addEventListener('input', (e) => {
+      state.scheduleNotes[e.target.dataset.dow] = e.target.value;
+      save(); renderToday();
+    }));
+    document.getElementById('rotation-reset-all').addEventListener('click', () => {
+      state.cyberRotation = {};
+      state.corecsRotation = {};
+      state.scheduleNotes = {};
+      save(); renderToday(); renderRotationEditor();
+    });
+  }
+
+  document.getElementById('rotation-edit-toggle').addEventListener('click', () => {
+    const editor = document.getElementById('rotation-editor');
+    const toggle = document.getElementById('rotation-edit-toggle');
+    const isHidden = editor.style.display === 'none' || !editor.style.display;
+    if(isHidden){
+      renderRotationEditor();
+      editor.style.display = 'block';
+      toggle.textContent = 'Close';
+    } else {
+      editor.style.display = 'none';
+      toggle.textContent = 'Edit';
+    }
+  });
 
   document.getElementById('daytype-toggle').addEventListener('click', (e) => {
     const btn = e.target.closest('button'); if(!btn) return;
