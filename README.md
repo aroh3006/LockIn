@@ -18,7 +18,7 @@ Lock In was built around one idea: preparation only works if you can see at a gl
 
 The dashboard is organized into tabs, each covering one part of preparation:
 
-- **Today** - the day's suggested focus (cybersecurity topic, core CS subject, and a schedule note, each editable per day of the week), a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, and same-day alerts for any scheduled OA, interview, or pre-placement talk.
+- **Today** - the day's suggested focus (cybersecurity topic, core CS subject and a schedule note, each editable per day of the week), a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, same-day alerts for any scheduled OA, interview or pre-placement talk and a separate reminder for any DSA problems currently due for revisit.
 - **Log / Archive** - a calendar you can click into for any date, with a free-text field for what you actually worked on that day.
 - **DSA** - a pattern-tagged problem tracker with a Day 3 / Day 10 / Day 30 spaced-revisit schedule, status color-coding, full solve-history per problem, and search/filter by pattern, tier, or status.
 - **TryHackMe** - the same tracking model applied to hands-on rooms and paths, organized by category.
