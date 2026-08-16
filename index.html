@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self';">
 <title>Lock In</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,6 +31,7 @@
   ::selection{background:var(--amber-dim);}
   .mono{font-family:'IBM Plex Mono',monospace;}
   .display{font-family:'Space Grotesk',sans-serif;}
+  .item-name{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:500;letter-spacing:-0.01em;overflow-wrap:break-word;}
 
   a{color:inherit;}
   button{cursor:pointer;font-family:'IBM Plex Mono',monospace;}
@@ -43,27 +45,27 @@
     position:sticky;top:0;height:100vh;
   }
   .brand{padding:0 20px 18px;border-bottom:1px solid var(--hairline);margin-bottom:14px;}
-  .brand .tag{font-size:10px;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;font-family:'IBM Plex Mono',monospace;}
-  .brand h1{font-size:19px;margin:4px 0 2px;font-weight:600;letter-spacing:-0.01em;}
-  .brand .sub{font-size:11px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;}
+  .brand .tag{font-size:12.5px;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;font-family:'IBM Plex Mono',monospace;}
+  .brand h1{font-size:21px;margin:4px 0 2px;font-weight:600;letter-spacing:-0.01em;}
+  .brand .sub{font-size:14px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;}
 
   .nav{display:flex;flex-direction:column;gap:2px;padding:0 10px;}
   .nav button{
     all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;
     padding:9px 12px;border-radius:var(--radius);color:var(--text-dim);
-    font-size:12.5px;letter-spacing:.03em;font-family:'IBM Plex Mono',monospace;
+    font-size:15.5px;letter-spacing:.03em;font-family:'IBM Plex Mono',monospace;
   }
-  .nav button .brk{color:var(--text-faint);font-size:11px;}
+  .nav button .brk{color:var(--text-faint);font-size:14px;}
   .nav button:hover{color:var(--text-primary);background:var(--bg-raised);}
   .nav button.active{color:var(--bg-deep);background:var(--amber);font-weight:600;}
   .nav button.active .brk{color:var(--bg-deep);opacity:.6;}
 
-  .alerts-mini{margin-top:auto;padding:14px 20px 0;border-top:1px solid var(--hairline);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);}
+  .alerts-mini{margin-top:auto;padding:14px 20px 0;border-top:1px solid var(--hairline);font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--text-dim);}
   .alerts-mini .row{display:flex;justify-content:space-between;padding:4px 0;}
   .alerts-mini .num{color:var(--amber);font-weight:600;}
   .alerts-mini .num.zero{color:var(--teal);}
 
-  .main{flex:1;padding:28px 36px 60px;max-width:1180px;}
+  .main{flex:1;min-width:0;padding:28px 36px 60px;max-width:1180px;}
   @media (max-width:860px){
     .shell{flex-direction:column;}
     .sidebar{width:100%;flex:none;height:auto;position:relative;flex-direction:row;overflow-x:auto;padding:14px;}
@@ -79,13 +81,13 @@
 
   .page-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
   .page-head h2{font-family:'Space Grotesk',sans-serif;font-size:24px;margin:0;letter-spacing:-0.01em;}
-  .page-head .desc{color:var(--text-dim);font-size:13px;margin-top:4px;max-width:520px;}
-  .page-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;}
+  .page-head .desc{color:var(--text-dim);font-size:16px;line-height:1.5;margin-top:4px;max-width:520px;}
+  .page-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;}
 
   /* ---------- bracket panel (signature element) ---------- */
   .panel{
     position:relative;background:var(--bg-panel);border:1px solid var(--hairline);
-    border-radius:var(--radius);padding:20px 20px 18px;margin-bottom:18px;
+    border-radius:var(--radius);padding:24px 24px 22px;margin-bottom:22px;
   }
   .panel::before,.panel::after,.panel .bc2::before,.panel .bc2::after{content:"";position:absolute;width:9px;height:9px;border-color:var(--amber);opacity:.55;}
   .panel::before{top:-1px;left:-1px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);}
@@ -94,7 +96,7 @@
   .panel .bc2::after{position:absolute;bottom:-1px;right:-1px;border-bottom:2px solid var(--amber);border-right:2px solid var(--amber);content:"";width:9px;height:9px;}
 
   .panel-title{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--text-dim);display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
   }
   .panel-title .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:8px;}
@@ -109,7 +111,7 @@
   /* ---------- status strip ---------- */
   .statusbar{
     display:flex;align-items:center;gap:22px;background:var(--bg-panel);border:1px solid var(--hairline);
-    border-radius:var(--radius);padding:12px 18px;margin-bottom:24px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;
+    border-radius:var(--radius);padding:12px 18px;margin-bottom:24px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:15px;
   }
   .statusbar .item{display:flex;align-items:center;gap:8px;color:var(--text-dim);}
   .statusbar .item b{color:var(--text-primary);font-weight:600;}
@@ -121,52 +123,48 @@
   .daytype-toggle{display:flex;gap:6px;}
   .daytype-toggle button{
     all:unset;cursor:pointer;padding:7px 13px;border:1px solid var(--hairline);border-radius:var(--radius);
-    font-size:11px;letter-spacing:.05em;color:var(--text-dim);background:var(--bg-input);
+    font-size:14px;letter-spacing:.05em;color:var(--text-dim);background:var(--bg-input);
   }
   .daytype-toggle button.sel{border-color:var(--amber);color:var(--amber);background:rgba(185,154,107,0.08);}
 
   /* ---------- checklist ---------- */
   .checklist{display:flex;flex-direction:column;gap:8px;}
-  .check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--bg-input);border:1px solid var(--hairline);border-radius:var(--radius);font-size:13px;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--bg-input);border:1px solid var(--hairline);border-radius:var(--radius);font-size:16px;}
   .check-item input[type=checkbox]{margin-top:2px;width:15px;height:15px;accent-color:var(--teal);flex:0 0 auto;}
   .check-item.done label{color:var(--text-faint);text-decoration:line-through;}
   .check-item label{cursor:pointer;flex:1;}
 
   /* ---------- tables ---------- */
-  table{width:100%;border-collapse:collapse;font-size:12.5px;}
-  th{text-align:left;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:0 8px 8px;border-bottom:1px solid var(--hairline);font-weight:500;}
-  td{padding:8px 8px;border-bottom:1px solid var(--hairline);vertical-align:middle;}
+  table{width:100%;border-collapse:collapse;font-size:15.5px;}
+  th{text-align:left;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:0 16px 14px;border-bottom:1px solid var(--hairline);font-weight:500;white-space:nowrap;}
+  td{padding:16px;border-bottom:1px solid var(--hairline);vertical-align:middle;}
   tr:last-child td{border-bottom:none;}
   tr:hover td{background:rgba(255,255,255,0.015);}
 
   input[type=text],input[type=date],input[type=number],select,textarea{
     background:var(--bg-input);border:1px solid var(--hairline);color:var(--text-primary);
-    border-radius:var(--radius);padding:7px 9px;font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;
+    border-radius:var(--radius);padding:7px 9px;font-size:15.5px;font-family:'IBM Plex Sans',sans-serif;
     width:100%;
   }
-  select{font-family:'IBM Plex Mono',monospace;font-size:11.5px;}
+  select{font-family:'IBM Plex Mono',monospace;font-size:14.5px;}
   input:focus,select:focus,textarea:focus{outline:1.5px solid var(--amber);outline-offset:0;border-color:var(--amber);}
   textarea{resize:vertical;min-height:70px;font-family:'IBM Plex Sans',sans-serif;}
 
-  .badge{display:inline-block;padding:2.5px 8px;border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.03em;border:1px solid transparent;}
+  .badge{display:inline-block;padding:2.5px 8px;border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.03em;border:1px solid transparent;}
   .badge.must{background:rgba(185,154,107,0.12);color:var(--amber);border-color:var(--amber-dim);}
   .badge.should{background:rgba(132,161,143,0.1);color:var(--teal);border-color:var(--teal-dim);}
   .badge.done{background:rgba(132,161,143,0.14);color:var(--teal);}
   .badge.overdue{background:rgba(176,106,98,0.14);color:var(--red);}
   .badge.pending{background:rgba(124,138,154,0.12);color:var(--text-dim);}
 
-  .btn{all:unset;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.03em;
+  .btn{all:unset;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:14.5px;letter-spacing:.03em;
     padding:8px 14px;border-radius:var(--radius);border:1px solid var(--hairline);color:var(--text-dim);background:var(--bg-input);}
   .btn:hover{color:var(--text-primary);border-color:var(--text-dim);}
   .btn.primary{background:var(--amber);color:var(--bg-deep);border-color:var(--amber);font-weight:600;}
   .btn.primary:hover{opacity:.9;}
   .btn.ghost{border:none;background:transparent;padding:6px 8px;}
   .btn.danger:hover{color:var(--red);border-color:var(--red-dim);}
-  .btn.xs{padding:5px 9px;font-size:10.5px;}
-
-  .stars{display:flex;gap:3px;}
-  .stars button{all:unset;cursor:pointer;font-size:14px;color:var(--text-faint);line-height:1;padding:1px;}
-  .stars button.on{color:var(--amber);}
+  .btn.xs{padding:5px 9px;font-size:13px;}
 
   .addrow-form{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
   .addrow-form > *{flex:1;min-width:110px;}
@@ -186,44 +184,44 @@
   .modal-box .corner-bl,.modal-box .corner-br{content:"";position:absolute;width:9px;height:9px;border-color:var(--amber);opacity:.55;bottom:-1px;}
   .modal-box .corner-bl{left:-1px;border-bottom:2px solid var(--amber);border-left:2px solid var(--amber);}
   .modal-box .corner-br{right:-1px;border-bottom:2px solid var(--amber);border-right:2px solid var(--amber);}
-  .modal-label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:16px 0 6px;}
+  .modal-label{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:16px 0 6px;}
   .modal-box input[type=text]{width:100%;}
 
-  .empty-hint{color:var(--text-faint);font-size:12px;font-family:'IBM Plex Mono',monospace;padding:14px 0;text-align:center;}
+  .empty-hint{color:var(--text-faint);font-size:15px;font-family:'IBM Plex Mono',monospace;padding:14px 0;text-align:center;}
 
-  .today-suggestion{font-size:13px;line-height:1.6;color:var(--text-primary);}
-  .today-suggestion .k{color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
+  .today-suggestion{font-size:16px;line-height:1.6;color:var(--text-primary);}
+  .today-suggestion .k{color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
   .today-suggestion .v{margin-bottom:14px;}
-  .free-block-note{margin-top:6px;padding:10px 12px;background:var(--bg-input);border-left:2px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;font-size:12px;color:var(--text-dim);}
+  .free-block-note{margin-top:6px;padding:10px 12px;background:var(--bg-input);border-left:2px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;font-size:15px;color:var(--text-dim);}
 
   /* ---------- rotation editor ---------- */
   #rotation-editor{margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);}
-  .rotation-editor-hint{font-size:11px;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;margin-bottom:12px;}
+  .rotation-editor-hint{font-size:14px;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;margin-bottom:12px;}
   .rotation-day-block{padding:12px 0;border-top:1px solid var(--hairline);}
   .rotation-day-block:first-of-type{border-top:none;padding-top:0;}
-  .rotation-day-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
-  .rotation-day-block label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin:8px 0 4px;}
-  .rotation-day-block input[type=text],.rotation-day-block textarea{width:100%;font-size:12.5px;}
+  .rotation-day-label{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+  .rotation-day-block label{display:block;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin:8px 0 4px;}
+  .rotation-day-block input[type=text],.rotation-day-block textarea{width:100%;font-size:15.5px;}
   .rotation-day-block textarea{min-height:50px;}
   .rotation-reset-row{display:flex;justify-content:flex-end;margin-bottom:10px;}
 
   .week-entry{padding:14px;background:var(--bg-input);border:1px solid var(--hairline);border-radius:var(--radius);margin-bottom:12px;}
-  .week-entry .wk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);}
+  .week-entry .wk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--text-dim);}
 
-  .footer-note{margin-top:30px;padding-top:16px;border-top:1px solid var(--hairline);color:var(--text-faint);font-size:11px;font-family:'IBM Plex Mono',monospace;}
+  .footer-note{margin-top:30px;padding-top:16px;border-top:1px solid var(--hairline);color:var(--text-faint);font-size:14px;font-family:'IBM Plex Mono',monospace;}
 
   /* ---------- calendar / archive ---------- */
   .cal-layout{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
   @media (max-width:900px){.cal-layout{grid-template-columns:1fr;}}
 
   .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-  .cal-nav .cal-month-label{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;}
+  .cal-nav .cal-month-label{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;}
   .cal-nav .cal-btns{display:flex;gap:6px;}
-  .cal-nav button{all:unset;cursor:pointer;color:var(--text-dim);border:1px solid var(--hairline);border-radius:var(--radius);padding:6px 11px;font-size:12px;font-family:'IBM Plex Mono',monospace;}
+  .cal-nav button{all:unset;cursor:pointer;color:var(--text-dim);border:1px solid var(--hairline);border-radius:var(--radius);padding:6px 11px;font-size:15px;font-family:'IBM Plex Mono',monospace;}
   .cal-nav button:hover{color:var(--text-primary);border-color:var(--text-dim);}
 
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-  .cal-dow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);text-align:center;padding-bottom:4px;}
+  .cal-dow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);text-align:center;padding-bottom:4px;}
   .cal-cell{
     position:relative;aspect-ratio:1/0.82;border:1px solid var(--hairline);border-radius:var(--radius);
     background:var(--bg-input);padding:6px 7px;cursor:pointer;font-family:'IBM Plex Mono',monospace;
@@ -231,33 +229,33 @@
   }
   .cal-cell:hover{border-color:var(--text-dim);}
   .cal-cell.empty{visibility:hidden;pointer-events:none;}
-  .cal-cell .cal-num{font-size:12px;color:var(--text-dim);}
+  .cal-cell .cal-num{font-size:15px;color:var(--text-dim);}
   .cal-cell.is-today .cal-num{color:var(--amber);font-weight:600;}
   .cal-cell.is-today{border-color:var(--amber-dim);}
   .cal-cell.is-selected{border-color:var(--amber);background:rgba(185,154,107,0.07);}
   .cal-cell .cal-marks{display:flex;gap:3px;align-items:center;flex-wrap:wrap;}
   .cal-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);}
-  .cal-daytype-chip{font-size:8.5px;letter-spacing:.03em;padding:1px 4px;border-radius:8px;text-transform:uppercase;}
+  .cal-daytype-chip{font-size:10.5px;letter-spacing:.03em;padding:1px 4px;border-radius:8px;text-transform:uppercase;}
   .cal-daytype-chip.min{background:rgba(124,138,154,0.18);color:var(--text-dim);}
   .cal-daytype-chip.normal{background:rgba(132,161,143,0.14);color:var(--teal);}
   .cal-daytype-chip.max{background:rgba(185,154,107,0.16);color:var(--amber);}
 
   .cal-detail{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px;position:sticky;top:20px;}
-  .cal-detail .cd-date{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;margin-bottom:2px;}
-  .cal-detail .cd-dow{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);margin-bottom:14px;}
+  .cal-detail .cd-date{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:2px;}
+  .cal-detail .cd-dow{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--text-dim);margin-bottom:14px;}
   .cal-detail .cd-meta{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
-  .cal-detail textarea{min-height:220px;font-size:13px;line-height:1.6;}
-  .cal-detail .cd-hint{font-size:11px;color:var(--text-faint);margin-top:6px;font-family:'IBM Plex Mono',monospace;}
+  .cal-detail textarea{min-height:220px;font-size:16px;line-height:1.6;}
+  .cal-detail .cd-hint{font-size:14px;color:var(--text-faint);margin-top:6px;font-family:'IBM Plex Mono',monospace;}
   .cal-save-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
-  .cal-saved-flag{font-size:10.5px;color:var(--teal);font-family:'IBM Plex Mono',monospace;opacity:0;transition:opacity .3s;}
+  .cal-saved-flag{font-size:13px;color:var(--teal);font-family:'IBM Plex Mono',monospace;opacity:0;transition:opacity .3s;}
   .cal-saved-flag.show{opacity:1;}
 
   /* ---------- revision history ---------- */
   .rev-cell{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
   .history-toggle{color:var(--text-faint);}
   .history-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;padding:8px;background:var(--bg-input);border:1px solid var(--hairline);border-radius:var(--radius);}
-  .hist-chip{display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--text-dim);background:var(--bg-raised);border:1px solid var(--hairline);border-radius:20px;padding:3px 5px 3px 9px;}
-  .hist-del{all:unset;cursor:pointer;color:var(--text-faint);font-size:11px;padding:0 4px;}
+  .hist-chip{display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-dim);background:var(--bg-raised);border:1px solid var(--hairline);border-radius:20px;padding:3px 5px 3px 9px;}
+  .hist-del{all:unset;cursor:pointer;color:var(--text-faint);font-size:14px;padding:0 4px;}
   .hist-del:hover{color:var(--red);}
 
   /* ---------- status color scheme (red/yellow/green/blue) ---------- */
@@ -267,7 +265,7 @@
     --status-green:#7FA66B;
     --status-blue:#6E8CA0;
   }
-  select.select-status{font-weight:500;}
+  select.select-status{font-weight:500;min-width:150px;}
   select.select-status.st-not-started{border-color:var(--status-red);color:var(--status-red);}
   select.select-status.st-solved{border-color:var(--status-green);color:var(--status-green);}
   select.select-status.st-completed{border-color:var(--status-green);color:var(--status-green);}
@@ -285,29 +283,35 @@
   .hm-cell.lvl2{background:rgba(110,140,160,0.55);border-color:transparent;}
   .hm-cell.lvl3{background:rgba(110,140,160,0.8);border-color:transparent;}
   .hm-cell.lvl4{background:var(--status-blue);border-color:transparent;}
-  .heatmap-legend{display:flex;align-items:center;gap:4px;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-faint);}
+  .heatmap-legend{display:flex;align-items:center;gap:4px;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-faint);}
   .heatmap-legend .hm-cell{width:10px;height:10px;}
   .hm-tooltip{
     position:fixed;z-index:80;background:var(--bg-raised);border:1px solid var(--hairline);
-    border-radius:var(--radius);padding:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    border-radius:var(--radius);padding:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:14px;
     color:var(--text-primary);pointer-events:none;white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,0.45);
   }
   .hm-tooltip .hm-tt-count{color:var(--status-blue);}
-  .status-date{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--text-faint);margin-top:4px;}
+  .status-date{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-faint);margin-top:4px;}
 
   /* ---------- placement events ---------- */
   .table-scroll{overflow-x:auto;}
-  input[type=datetime-local]{min-width:150px;font-size:11px;}
+  input[type=datetime-local]{min-width:150px;font-size:14px;}
   .events-alert{
     background:rgba(176,106,98,0.08);border:1px solid var(--red-dim);border-radius:var(--radius);
     padding:14px 16px;margin-bottom:20px;
   }
-  .events-alert .ea-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--status-red);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .events-alert .ea-title{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--status-red);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
   .events-alert .ea-title .live-red{width:6px;height:6px;border-radius:50%;background:var(--status-red);animation:pulse 1.4s infinite;}
-  .ea-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;border-top:1px solid rgba(176,106,98,0.18);}
+  .ea-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:16px;border-top:1px solid rgba(176,106,98,0.18);}
   .ea-item:first-of-type{border-top:none;}
-  .ea-time{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-primary);min-width:78px;}
-  .ea-type{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:20px;background:rgba(176,106,98,0.16);color:var(--status-red);}
+  .ea-time{font-family:'IBM Plex Mono',monospace;font-size:14.5px;color:var(--text-primary);min-width:78px;}
+  .ea-type{font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:20px;background:rgba(176,106,98,0.16);color:var(--status-red);}
+
+  .events-alert.amber-alert{background:rgba(185,154,107,0.08);border-color:var(--amber-dim);}
+  .events-alert.amber-alert .ea-title{color:var(--amber);}
+  .events-alert.amber-alert .ea-title .live-red{background:var(--amber);}
+  .events-alert.amber-alert .ea-item{border-top-color:rgba(185,154,107,0.18);}
+  .events-alert.amber-alert .ea-type{background:rgba(185,154,107,0.16);color:var(--amber);}
 </style>
 </head>
 <body>
@@ -315,8 +319,8 @@
 <div class="modal-overlay" id="profile-modal" style="display:none;">
   <div class="modal-box">
     <div class="page-eyebrow">Setup</div>
-    <h2 class="display" style="font-size:18px;margin:0 0 3px;">Welcome to Lock In</h2>
-    <div class="desc" style="margin-bottom:14px;font-size:12.5px;line-height:1.4;">Quick setup so this fits what you're actually preparing for.</div>
+    <h2 class="display" style="font-size:20px;margin:0 0 3px;">Welcome to Lock In</h2>
+    <div class="desc" style="margin-bottom:14px;font-size:15.5px;line-height:1.4;">Quick setup so this fits what you're actually preparing for.</div>
 
     <label class="modal-label" style="margin:0 0 5px;">Your name</label>
     <input type="text" id="profile-name-input" placeholder="e.g. Aroh">
@@ -326,7 +330,7 @@
       <button data-v="yes" style="flex:1;">YES</button>
       <button data-v="no" style="flex:1;">NO</button>
     </div>
-    <div class="cd-hint" style="margin-top:6px;font-size:11px;line-height:1.4;">This shows or hides the TryHackMe and Cybersecurity tabs and the cyber rotation on your "Today" tab. Everything else : DSA, Core CS, Placements, Log and Review stays either way. You can change this anytime.</div>
+    <div class="cd-hint" style="margin-top:6px;font-size:14px;line-height:1.4;">This shows or hides the TryHackMe and Cybersecurity tabs and the cyber rotation on your "Today" tab. Everything else : DSA, Core CS, Placements, Log and Review stays either way. You can change this anytime.</div>
 
     <button class="btn primary" id="profile-save-btn" style="margin-top:14px;width:auto;padding-left:28px;padding-right:28px;">Continue</button>
     <div class="corner-bl"></div>
@@ -377,6 +381,7 @@
       </div>
 
       <div class="events-alert" id="today-events-alert" style="display:none;"></div>
+      <div class="events-alert amber-alert" id="dsa-due-alert" style="display:none;"></div>
 
       <div class="statusbar">
         <div class="item"><span class="live"></span> <b id="sb-date">—</b></div>
@@ -417,7 +422,7 @@
         <div class="bc2"></div>
         <div class="panel-title">
           <span><span class="dot"></span>Activity</span>
-          <span class="mono" style="font-size:11px;color:var(--text-dim);">streak <b id="streak-current" style="color:var(--text-primary);">0</b> · longest <b id="streak-longest" style="color:var(--text-primary);">0</b></span>
+          <span class="mono" style="font-size:14px;color:var(--text-dim);">streak <b id="streak-current" style="color:var(--text-primary);">0</b> · longest <b id="streak-longest" style="color:var(--text-primary);">0</b></span>
         </div>
         <div class="heatmap-wrap">
           <div class="heatmap" id="activity-heatmap"></div>
@@ -479,7 +484,7 @@
       <div class="panel">
         <div class="bc2"></div>
         <div class="panel-title"><span><span class="dot"></span>Problems (<span id="dsa-count">0</span>)</span>
-          <span class="mono" style="font-size:11px;color:var(--text-faint);"><span id="dsa-due-count">0</span> due today</span>
+          <span class="mono" style="font-size:14px;color:var(--text-faint);"><span id="dsa-due-count">0</span> due today</span>
         </div>
         <div class="filter-bar">
           <input type="text" id="dsa-search" placeholder="Search name or pattern…">
@@ -504,10 +509,17 @@
           </select>
           <button class="btn xs ghost" id="dsa-filter-clear">Clear</button>
         </div>
+        <div class="table-scroll">
         <table>
-          <thead><tr><th>Problem</th><th>Pattern</th><th>Diff.</th><th>Tier</th><th>Status</th><th>Next review</th><th>Conf.</th><th></th></tr></thead>
+          <colgroup>
+            <col style="width:200px;">
+            <col style="width:130px;">
+            <col><col><col><col><col><col>
+          </colgroup>
+          <thead><tr><th>Problem</th><th>Pattern</th><th>Diff.</th><th>Tier</th><th>Status</th><th>Next review</th><th></th><th></th></tr></thead>
           <tbody id="dsa-tbody"></tbody>
         </table>
+        </div>
         <div class="addrow-form">
           <input type="text" id="dsa-new-name" placeholder="Problem name">
           <select id="dsa-new-pattern">
@@ -557,10 +569,12 @@
           </select>
           <button class="btn xs ghost" id="thm-filter-clear">Clear</button>
         </div>
+        <div class="table-scroll">
         <table>
-          <thead><tr><th>Room / Path</th><th>Category</th><th>Diff.</th><th>Tier</th><th>Status</th><th>Completed</th><th>Conf.</th><th></th></tr></thead>
+          <thead><tr><th>Room / Path</th><th>Category</th><th>Diff.</th><th>Tier</th><th>Status</th><th>Completed</th><th></th></tr></thead>
           <tbody id="thm-tbody"></tbody>
         </table>
+        </div>
         <div class="addrow-form">
           <input type="text" id="thm-new-name" placeholder="Room or path name">
           <select id="thm-new-category">
@@ -588,10 +602,12 @@
       <div class="panel">
         <div class="bc2"></div>
         <div class="panel-title"><span><span class="dot"></span>Topics</span></div>
+        <div class="table-scroll">
         <table>
-          <thead><tr><th>Topic</th><th>Last reviewed</th><th>Confidence</th><th>Interview-ready</th><th></th></tr></thead>
+          <thead><tr><th>Topic</th><th>Last reviewed</th><th>Interview-ready</th><th></th></tr></thead>
           <tbody id="cyber-tbody"></tbody>
         </table>
+        </div>
         <div class="addrow-form">
           <input type="text" id="cyber-new-name" placeholder="Custom topic name">
           <button class="btn primary" id="cyber-add-btn">+ Add topic</button>
@@ -612,10 +628,12 @@
       <div class="panel">
         <div class="bc2"></div>
         <div class="panel-title"><span><span class="dot"></span>Subjects</span></div>
+        <div class="table-scroll">
         <table>
-          <thead><tr><th>Subject</th><th>Last revision</th><th>Confidence</th></tr></thead>
+          <thead><tr><th>Subject</th><th>Last revision</th></tr></thead>
           <tbody id="corecs-tbody"></tbody>
         </table>
+        </div>
       </div>
     </div>
 
@@ -1264,6 +1282,7 @@
     document.getElementById('dsa-count').textContent = filtered.length;
     const dueCount = state.dsa.filter(dsaIsDue).length;
     document.getElementById('dsa-due-count').textContent = dueCount;
+    renderDsaDueAlert();
 
     if(state.dsa.length === 0){
       tbody.innerHTML = '<tr><td colspan="8"><div class="empty-hint">No problems yet — add your first one below.</div></td></tr>';
@@ -1278,9 +1297,9 @@
         ? `<span class="badge ${due?'overdue':'pending'}">${p.nextReview}</span>`
         : `<span class="badge pending">—</span>`;
       tr.innerHTML = `
-        <td>${p.name}</td>
-        <td class="mono" style="color:var(--text-dim);font-size:11px;">${p.pattern}</td>
-        <td class="mono" style="font-size:11px;">${p.difficulty}</td>
+        <td class="item-name">${escapeHtml(p.name)}</td>
+        <td class="mono" style="color:var(--text-dim);font-size:14px;overflow-wrap:break-word;">${p.pattern}</td>
+        <td class="mono" style="font-size:14px;">${p.difficulty}</td>
         <td><span class="badge ${p.tier}">${p.tier.toUpperCase()}</span></td>
         <td>
           <select class="dsa-status select-status st-${p.status}" data-id="${p.id}">
@@ -1292,34 +1311,32 @@
           ${p.statusDate ? `<div class="status-date">since ${p.statusDate}</div>` : ''}
         </td>
         <td>${reviewBadge}</td>
-        <td><div class="stars" data-id="${p.id}">${[1,2,3,4,5].map(n=>`<button data-n="${n}" class="${p.confidence>=n?'on':''}">★</button>`).join('')}</div></td>
         <td>
           <div class="rev-cell">
             <button class="btn xs mark-solved" data-id="${p.id}" title="Mark solved today, schedule revisit">✓ solved today</button>
             <button class="btn xs ghost undo-solved" data-id="${p.id}" ${p.solveHistory.length===0?'disabled':''}>↺ undo</button>
-            <button class="btn xs ghost danger del-dsa" data-id="${p.id}">✕</button>
           </div>
           <button class="btn xs ghost dsa-history-toggle" data-id="${p.id}">${p.solveHistory.length} solve${p.solveHistory.length===1?'':'s'} ${expandedHistory.has('dsa-'+p.id)?'▾':'▸'}</button>
           ${expandedHistory.has('dsa-'+p.id) ? `<div class="history-chips">${p.solveHistory.slice().reverse().map(d=>`<span class="hist-chip">${d}<button class="dsa-hist-del" data-id="${p.id}" data-date="${d}">✕</button></span>`).join('') || '<span class="empty-hint" style="padding:4px 0;">No dates yet.</span>'}</div>` : ''}
         </td>
+        <td><button class="btn xs ghost danger del-dsa" data-id="${p.id}">✕</button></td>
       `;
       tbody.appendChild(tr);
     });
 
     tbody.querySelectorAll('.dsa-status').forEach(sel => sel.addEventListener('change', (e) => {
       const p = state.dsa.find(x => x.id === e.target.dataset.id);
-      p.status = e.target.value;
-      p.statusDate = todayStr();
-      save(); renderDSA(); renderMini();
+      if(e.target.value === 'solved'){
+        markDsaSolved(p);
+      } else {
+        p.status = e.target.value;
+        p.statusDate = todayStr();
+      }
+      save(); renderDSA(); renderMini(); renderReview();
     }));
     tbody.querySelectorAll('.mark-solved').forEach(btn => btn.addEventListener('click', (e) => {
       const p = state.dsa.find(x => x.id === e.target.dataset.id);
-      const revisitSchedule = [3,10,30];
-      addHistoryDate(p.solveHistory, todayStr());
-      p.lastSolved = lastOf(p.solveHistory);
-      if(p.status === 'not-started'){ p.status = 'solved'; p.statusDate = todayStr(); }
-      const idx = Math.min(p.solveHistory.length - 1, revisitSchedule.length - 1);
-      p.nextReview = addDays(p.lastSolved, revisitSchedule[idx]);
+      markDsaSolved(p);
       save(); renderDSA(); renderMini(); renderReview();
     }));
     tbody.querySelectorAll('.undo-solved').forEach(btn => btn.addEventListener('click', (e) => {
@@ -1344,13 +1361,16 @@
       state.dsa = state.dsa.filter(x => x.id !== e.target.dataset.id);
       save(); renderDSA(); renderMini();
     }));
-    tbody.querySelectorAll('.stars').forEach(starDiv => {
-      starDiv.querySelectorAll('button').forEach(b => b.addEventListener('click', (e) => {
-        const p = state.dsa.find(x => x.id === starDiv.dataset.id);
-        p.confidence = parseInt(e.target.dataset.n);
-        save(); renderDSA();
-      }));
-    });
+  }
+
+  function markDsaSolved(p){
+    const revisitSchedule = [3,10,30];
+    addHistoryDate(p.solveHistory, todayStr());
+    p.lastSolved = lastOf(p.solveHistory);
+    p.status = 'solved';
+    p.statusDate = todayStr();
+    const idx = Math.min(p.solveHistory.length - 1, revisitSchedule.length - 1);
+    p.nextReview = addDays(p.lastSolved, revisitSchedule[idx]);
   }
 
   function recomputeDsaSchedule(p){
@@ -1386,17 +1406,17 @@
     document.getElementById('thm-count').textContent = filtered.length;
 
     if(state.thm.length === 0){
-      tbody.innerHTML = '<tr><td colspan="8"><div class="empty-hint">No rooms yet — add your first one below.</div></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-hint">No rooms yet — add your first one below.</div></td></tr>';
     } else if(filtered.length === 0){
-      tbody.innerHTML = '<tr><td colspan="8"><div class="empty-hint">No rooms match your filters.</div></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-hint">No rooms match your filters.</div></td></tr>';
     }
 
     filtered.forEach(r => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${r.name}</td>
-        <td class="mono" style="color:var(--text-dim);font-size:11px;">${r.category}</td>
-        <td class="mono" style="font-size:11px;">${r.difficulty}</td>
+        <td class="item-name">${escapeHtml(r.name)}</td>
+        <td class="mono" style="color:var(--text-dim);font-size:14px;">${r.category}</td>
+        <td class="mono" style="font-size:14px;">${r.difficulty}</td>
         <td><span class="badge ${r.tier}">${r.tier.toUpperCase()}</span></td>
         <td>
           <select class="thm-status select-status st-${r.status}" data-id="${r.id}">
@@ -1407,7 +1427,6 @@
           ${r.statusDate ? `<div class="status-date">since ${r.statusDate}</div>` : ''}
         </td>
         <td>${historyCellHTML('thm-', r.id, r.history, '✓ completed today', 'mark-thm', 'undo-thm')}</td>
-        <td><div class="stars" data-id="${r.id}">${[1,2,3,4,5].map(n=>`<button data-n="${n}" class="${r.confidence>=n?'on':''}">★</button>`).join('')}</div></td>
         <td><button class="btn xs ghost danger del-thm" data-id="${r.id}">✕</button></td>
       `;
       tbody.appendChild(tr);
@@ -1448,13 +1467,6 @@
       state.thm = state.thm.filter(x => x.id !== e.target.dataset.id);
       save(); renderTHM();
     }));
-    tbody.querySelectorAll('.stars').forEach(starDiv => {
-      starDiv.querySelectorAll('button').forEach(b => b.addEventListener('click', (e) => {
-        const r = state.thm.find(x => x.id === starDiv.dataset.id);
-        r.confidence = parseInt(e.target.dataset.n);
-        save(); renderTHM();
-      }));
-    });
   }
 
   document.getElementById('thm-add-btn').addEventListener('click', () => {
@@ -1492,9 +1504,8 @@
     state.cyber.forEach(t => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${t.name}</td>
+        <td class="item-name">${escapeHtml(t.name)}</td>
         <td>${historyCellHTML('cyber-', t.id, t.history, '✓ today', 'mark-reviewed', 'undo-reviewed')}</td>
-        <td><div class="stars" data-id="${t.id}">${[1,2,3,4,5].map(n=>`<button data-n="${n}" class="${t.confidence>=n?'on':''}">★</button>`).join('')}</div></td>
         <td><input type="checkbox" class="ir-check" data-id="${t.id}" ${t.interviewReady?'checked':''}></td>
         <td><button class="btn xs ghost danger del-cyber" data-id="${t.id}">✕</button></td>
       `;
@@ -1534,13 +1545,6 @@
       state.cyber = state.cyber.filter(x => x.id !== e.target.dataset.id);
       save(); renderCyber(); renderMini();
     }));
-    tbody.querySelectorAll('.stars').forEach(starDiv => {
-      starDiv.querySelectorAll('button').forEach(b => b.addEventListener('click', (e) => {
-        const t = state.cyber.find(x => x.id === starDiv.dataset.id);
-        t.confidence = parseInt(e.target.dataset.n);
-        save(); renderCyber();
-      }));
-    });
   }
 
   document.getElementById('cyber-add-btn').addEventListener('click', () => {
@@ -1558,9 +1562,8 @@
     state.corecs.forEach(s => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${s.name}</td>
+        <td class="item-name">${s.name}</td>
         <td>${historyCellHTML('corecs-', s.id, s.history, '✓ today', 'mark-revised', 'undo-revised')}</td>
-        <td><div class="stars" data-id="${s.id}">${[1,2,3,4,5].map(n=>`<button data-n="${n}" class="${s.confidence>=n?'on':''}">★</button>`).join('')}</div></td>
       `;
       tbody.appendChild(tr);
     });
@@ -1589,13 +1592,6 @@
       item.lastRevision = lastOf(item.history);
       save(); renderCoreCS(); renderReview();
     }));
-    tbody.querySelectorAll('.stars').forEach(starDiv => {
-      starDiv.querySelectorAll('button').forEach(b => b.addEventListener('click', (e) => {
-        const s = state.corecs.find(x => x.id === starDiv.dataset.id);
-        s.confidence = parseInt(e.target.dataset.n);
-        save(); renderCoreCS();
-      }));
-    });
   }
 
   // ---------------- PLACEMENTS ----------------
@@ -1609,8 +1605,8 @@
     state.placements.forEach(c => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${c.company}</td>
-        <td>${c.role}</td>
+        <td>${escapeHtml(c.company)}</td>
+        <td>${escapeHtml(c.role)}</td>
         <td>
           <select class="pl-stage select-stage stage-${c.stage.toLowerCase().replace(/\s+/g,'-')}" data-id="${c.id}">
             <option ${c.stage==='Applied'?'selected':''}>Applied</option>
@@ -1622,11 +1618,11 @@
             <option ${c.stage==='Rejected'?'selected':''}>Rejected</option>
           </select>
         </td>
-        <td><input type="text" class="pl-action" data-id="${c.id}" value="${c.action || ''}" placeholder="Next action"></td>
-        <td><input type="date" class="pl-date" data-id="${c.id}" value="${c.by || ''}"></td>
-        <td><input type="datetime-local" class="pl-oa" data-id="${c.id}" value="${c.oaAt || ''}"></td>
-        <td><input type="datetime-local" class="pl-interview" data-id="${c.id}" value="${c.interviewAt || ''}"></td>
-        <td><input type="datetime-local" class="pl-ppt" data-id="${c.id}" value="${c.pptAt || ''}"></td>
+        <td><input type="text" class="pl-action" data-id="${c.id}" value="${escapeAttr(c.action || '')}" placeholder="Next action"></td>
+        <td><input type="date" class="pl-date" data-id="${c.id}" value="${escapeAttr(c.by || '')}"></td>
+        <td><input type="datetime-local" class="pl-oa" data-id="${c.id}" value="${escapeAttr(c.oaAt || '')}"></td>
+        <td><input type="datetime-local" class="pl-interview" data-id="${c.id}" value="${escapeAttr(c.interviewAt || '')}"></td>
+        <td><input type="datetime-local" class="pl-ppt" data-id="${c.id}" value="${escapeAttr(c.pptAt || '')}"></td>
         <td><button class="btn xs ghost danger del-pl" data-id="${c.id}">✕</button></td>
       `;
       tbody.appendChild(tr);
@@ -1710,7 +1706,23 @@
         <div class="ea-item">
           <span class="ea-time">${formatTime12h(e.time)}</span>
           <span class="ea-type">${e.type}</span>
-          <span>${e.company}${e.role ? ' · ' + e.role : ''}</span>
+          <span>${escapeHtml(e.company)}${e.role ? ' · ' + escapeHtml(e.role) : ''}</span>
+        </div>
+      `).join('')}
+    `;
+  }
+
+  function renderDsaDueAlert(){
+    const box = document.getElementById('dsa-due-alert');
+    const due = state.dsa.filter(dsaIsDue);
+    if(due.length === 0){ box.style.display = 'none'; box.innerHTML = ''; return; }
+    box.style.display = 'block';
+    box.innerHTML = `
+      <div class="ea-title"><span class="live-red"></span>${due.length} DSA problem${due.length===1?'':'s'} due for revisit</div>
+      ${due.map(p => `
+        <div class="ea-item">
+          <span class="ea-type">${p.pattern}</span>
+          <span>${escapeHtml(p.name)}${p.nextReview < todayStr() ? ' <span style="color:var(--text-faint);">(overdue since ' + p.nextReview + ')</span>' : ''}</span>
         </div>
       `).join('')}
     `;
@@ -1737,7 +1749,7 @@
     state.reviews.slice().reverse().forEach(r => {
       const div = document.createElement('div');
       div.className = 'week-entry';
-      div.innerHTML = `<div class="wk-head"><span>${r.date}</span><button class="btn xs ghost danger del-review" data-id="${r.id}">✕</button></div><div style="font-size:13px;white-space:pre-wrap;">${r.text}</div>`;
+      div.innerHTML = `<div class="wk-head"><span>${r.date}</span><button class="btn xs ghost danger del-review" data-id="${r.id}">✕</button></div><div style="font-size:16px;white-space:pre-wrap;">${escapeHtml(r.text)}</div>`;
       list.appendChild(div);
     });
     list.querySelectorAll('.del-review').forEach(btn => btn.addEventListener('click', (e) => {
