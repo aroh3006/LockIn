@@ -65,15 +65,15 @@ To run it locally instead:
 
 ## Tech Stack
 
-- HTML, CSS, and vanilla JavaScript. No framework, no build tooling, no package manager.
-- All state, rendering and event handling are implemented in a single file.
+- HTML, CSS and vanilla JavaScript. No framework, no build tooling, no package manager.
+- All state rendering and event handling are implemented in a single file.
 - Fonts are loaded from Google Fonts (Space Grotesk, IBM Plex Mono, IBM Plex Sans); everything else is self-contained.
 
 ## Customization
 
 The seeded DSA problem set, TryHackMe rooms, cybersecurity rotation topics, and core CS subjects reflect one particular preparation plan. They are starting points, not fixed content. Items can be added, removed or edited freely from within the dashboard once it is running and the seed data itself can be edited directly in the source for a different starting point.
 
-The weekly rotation shown on the Today tab — the cybersecurity topic, core CS subject, and schedule note suggested for each day — is editable directly from the dashboard, with no need to touch the source. An **Edit** control on the Today's Rotation panel opens a per-day editor for all seven days at once. Any field left blank falls back to its default, shown as placeholder text, so a partial edit never leaves a day looking empty. A **Reset all to defaults** action is available in the same editor to revert every override at once. This is separate from the seed data above: seed data controls the initial list of trackable items, while the rotation editor controls the day-by-day text shown on the Today tab.
+The weekly rotation shown on the Today tab : the cybersecurity topic, core CS subject and schedule note suggested for each day is editable directly from the dashboard, with no need to touch the source. An **Edit** control on the Today's Rotation panel opens a per-day editor for all seven days at once. Any field left blank falls back to its default, shown as placeholder text, so a partial edit never leaves a day looking empty. A **Reset all to defaults** action is available in the same editor to revert every override at once. This is separate from the seed data above: seed data controls the initial list of trackable items, while the rotation editor controls the day-by-day text shown on the Today tab.
 
 ## License
 
