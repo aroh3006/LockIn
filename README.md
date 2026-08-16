@@ -8,15 +8,17 @@
 
 A single-file, self-contained dashboard for tracking placement season preparation : DSA practice, cybersecurity study rotation, hands-on TryHackMe rooms, core CS revision and the interview pipeline itself. No build step, no backend, no dependencies. Open `index.html` in a browser and it runs.
 
+**Live:** [aroh3006.github.io/LockIn](https://aroh3006.github.io/LockIn)
+
 ---
 
 ## Overview
 
-Lock In was built around one idea: preparation only works if you can see, at a glance, what you actually did and what's overdue. It is not a study planner that tells you what to do — it is a tracker that records what you did do, so patterns become visible over time instead of staying anecdotal.
+Lock In was built around one idea: preparation only works if you can see at a glance what you actually did and what's overdue. It is not a study planner that tells you what to do. It is a tracker that records what you did do so patterns become visible over time instead of staying anecdotal.
 
 The dashboard is organized into tabs, each covering one part of preparation:
 
-- **Today** - the day's suggested focus, a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, and same-day alerts for any scheduled OA, interview, or pre-placement talk.
+- **Today** - the day's suggested focus (cybersecurity topic, core CS subject, and a schedule note, each editable per day of the week), a Min/Normal/Max effort checklist, an activity heatmap with a current/longest streak, and same-day alerts for any scheduled OA, interview, or pre-placement talk.
 - **Log / Archive** - a calendar you can click into for any date, with a free-text field for what you actually worked on that day.
 - **DSA** - a pattern-tagged problem tracker with a Day 3 / Day 10 / Day 30 spaced-revisit schedule, status color-coding, full solve-history per problem, and search/filter by pattern, tier, or status.
 - **TryHackMe** - the same tracking model applied to hands-on rooms and paths, organized by category.
@@ -29,14 +31,14 @@ The dashboard is organized into tabs, each covering one part of preparation:
 
 Not every user of this dashboard is preparing for a cybersecurity role. On first load, the app asks for a name and whether the user is on a cybersecurity track.
 
-- If **yes**, the TryHackMe and Cybersecurity tabs are shown, along with the cybersecurity topic in the Today rotation panel and the cybersecurity item in the daily checklist.
+- If **yes**, the TryHackMe and Cybersecurity tabs are shown, along with the cybersecurity topic in the "Today" rotation panel and the cybersecurity item in the daily checklist.
 - If **no**, those elements are hidden entirely. DSA, Core CS, Placements, Log/Archive and Weekly Review remain available regardless, none of that is cybersecurity-specific.
 
-The track can be changed at any time from the Profile button in the sidebar, without affecting any already-recorded data.
+The track can be changed at any time from the Profile button in the sidebar without affecting any already-recorded data.
 
 ## Data and Storage
 
-Lock In stores all data client-side, under a single storage key, using one of two backends depending on where it is running:
+Lock In stores all data client-side under a single storage key using one of two backends depending on where it is running:
 
 - **Inside a Claude.ai artifact**, it uses Claude's built-in persistent storage, tied to the user's account.
 - **As a standalone deployment (for example, on GitHub Pages)**, it falls back to the browser's `localStorage`, since Claude's storage API is not available outside that environment.
@@ -46,18 +48,20 @@ Lock In stores all data client-side, under a single storage key, using one of tw
 When running as a standalone deployment, storage is scoped to a single browser on a single device. This means:
 
 - Data does not sync across devices or browsers.
-- Clearing browser data, cookies, or site storage will permanently delete all tracked progress.
+- Clearing browser data, cookies or site storage will permanently delete all tracked progress.
 - There is no account system and no server-side backup.
 
 This is an inherent constraint of a dependency-free, backend-free static page, not a bug. Anyone using this deployment for anything beyond casual or short-term use should periodically export their data manually or fork the project and connect a real backend if persistence across devices matters to them.
 
 ## Getting Started
 
-No installation is required.
+Lock In is already deployed at [aroh3006.github.io/LockIn](https://aroh3006.github.io/LockIn) — no installation needed, just open the link.
+
+To run it locally instead:
 
 1. Clone or download this repository.
 2. Open `index.html` directly in a browser, or serve the folder with any static file host.
-3. For a public deployment, enable GitHub Pages on this repository and point it at the branch containing `index.html`.
+3. For your own public deployment, enable GitHub Pages on your fork and point it at the branch containing `index.html`.
 
 ## Tech Stack
 
@@ -68,6 +72,8 @@ No installation is required.
 ## Customization
 
 The seeded DSA problem set, TryHackMe rooms, cybersecurity rotation topics, and core CS subjects reflect one particular preparation plan. They are starting points, not fixed content. Items can be added, removed or edited freely from within the dashboard once it is running and the seed data itself can be edited directly in the source for a different starting point.
+
+The weekly rotation shown on the Today tab — the cybersecurity topic, core CS subject, and schedule note suggested for each day — is editable directly from the dashboard, with no need to touch the source. An **Edit** control on the Today's Rotation panel opens a per-day editor for all seven days at once. Any field left blank falls back to its default, shown as placeholder text, so a partial edit never leaves a day looking empty. A **Reset all to defaults** action is available in the same editor to revert every override at once. This is separate from the seed data above: seed data controls the initial list of trackable items, while the rotation editor controls the day-by-day text shown on the Today tab.
 
 ## License
 
